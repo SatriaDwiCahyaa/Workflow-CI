@@ -1,0 +1,1 @@
+https://hub.docker.com/r/<zatriaa>/credit-card-fraud-model
