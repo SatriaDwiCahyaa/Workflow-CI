@@ -100,6 +100,18 @@ jobs:
           echo "model_uri=$MODEL_URI" >> $GITHUB_OUTPUT
           echo "Found model at: $MODEL_URI"
 
+      - name: Validate secrets
+        run: |
+          if [ -z "${{ secrets.DOCKERHUB_USERNAME }}" ]; then
+            echo "❌ ERROR: DOCKERHUB_USERNAME secret is not set!"
+            echo "Go to your repo Settings > Secrets and variables > Actions > New repository secret"
+            exit 1
+          fi
+          if [ -z "${{ secrets.DOCKERHUB_TOKEN }}" ]; then
+            echo "❌ ERROR: DOCKERHUB_TOKEN secret is not set!"
+            exit 1
+          fi
+
       - name: Build Docker image with MLflow
         run: |
           mlflow models build-docker \
