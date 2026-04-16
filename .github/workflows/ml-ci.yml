@@ -45,7 +45,7 @@ jobs:
       # ============================================================
       - name: Train model
         working-directory: MLProject
-        run: python modelling.py
+        run: mlflow run . --env-manager=local
 
       # ============================================================
       # 5. Upload Artefak ke GitHub (Skilled)
